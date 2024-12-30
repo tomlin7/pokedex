@@ -8,6 +8,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// ${BASE_URL}/api/pokemon
+// ${BASE_URL}/api/pokemon/1
+// ${BASE_URL}/api/pokemon/search?q=bulbasaur
+
 func main() {
 	r := gin.Default()
 
@@ -18,6 +22,7 @@ func main() {
 	{
 		api.GET("/pokemon", handlers.GetAllPokemon)
 		api.GET("/pokemon/:id", handlers.GetPokemonByID)
+		api.GET("/pokemon/search", handlers.SearchPokemon)
 	}
 
 	log.Fatal(r.Run(":8080"))

@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"server/models"
 	"strconv"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -27,4 +28,23 @@ func GetPokemonByID(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusNotFound, gin.H{"error": "Pokemon not found"})
+}
+
+func SearchPokemon(c *gin.Context) {
+	query := strings.ToLower(c.Query("q"))
+
+	if query == "" {
+		c.JSON(http.StatusOK, models.PokemonList)
+		return
+	}
+
+	var results []models.Pokemon
+	for _, pokemon := range models.PokemonList {
+		if strings.Contains(strings.ToLower(pokemon.Name), query) ||
+			strings.Contains(strconv.Itoa(pokemon.Number), query) {
+			results = append(results, pokemon)
+		}
+	}
+
+	c.JSON(http.StatusOK, results)
 }
