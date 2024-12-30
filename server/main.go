@@ -17,6 +17,7 @@ func main() {
 	api := r.Group("/api")
 	{
 		api.GET("/pokemon", handlers.GetAllPokemon)
+		api.GET("/pokemon/:id", handlers.GetPokemonByID)
 	}
 
 	log.Fatal(r.Run(":8080"))
