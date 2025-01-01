@@ -13,7 +13,7 @@ class DetailScreen extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20.0),
               child: Row(
                 children: [
                   IconButton(
@@ -32,10 +32,10 @@ class DetailScreen extends StatelessWidget {
                   Text(
                     '#${pokemon.number.toString().padLeft(3, '0')}',
                     style: const TextStyle(
-                      color: Colors.grey,
                       fontSize: 16,
+                      color: Colors.grey,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -57,7 +57,7 @@ class DetailScreen extends StatelessWidget {
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text("Forms"),
+                        Text('Forms'),
                         Text('Detail'),
                         Text('Types'),
                         Text('Stats'),
@@ -68,7 +68,7 @@ class DetailScreen extends StatelessWidget {
                     const Text(
                       'Mega Evolution',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -83,7 +83,7 @@ class DetailScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
