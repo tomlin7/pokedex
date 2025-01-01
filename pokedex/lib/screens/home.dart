@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/widgets/grid.dart';
 import 'package:pokedex/widgets/search.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class Home extends StatelessWidget {
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
