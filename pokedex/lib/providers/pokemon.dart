@@ -23,7 +23,7 @@ class PokemonProvider extends ChangeNotifier {
       _pokemonList = await _apiService.getAllPokemon();
       _filteredList = [];
     } catch (e) {
-      _error = 'Failed to load Pokemon';
+      _error = 'Failed to load Pokemon $e';
     } finally {
       _isLoading = false;
       notifyListeners();

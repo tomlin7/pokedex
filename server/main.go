@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"server/config"
 	"server/handlers"
 	"server/middleware"
 
@@ -13,8 +14,9 @@ import (
 // ${BASE_URL}/api/pokemon/search?q=bulbasaur
 
 func main() {
-	r := gin.Default()
+	config.ConnectDB()
 
+	r := gin.Default()
 	r.Use(middleware.CORS())
 
 	// routes

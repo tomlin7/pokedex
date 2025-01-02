@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Pokemon {
-  final int id;
+  final String id;
   final String name;
   final int number;
   final String imageUrl;
@@ -22,7 +22,7 @@ class Pokemon {
       id: json['id'],
       name: json['name'],
       number: json['number'],
-      imageUrl: json['imageURL'],
+      imageUrl: json['imageUrl'],
       description: json['description'],
       backgroundColor: _hexToColor(json['backgroundColor']),
     );

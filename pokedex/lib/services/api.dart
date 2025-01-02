@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:pokedex/models/pokemon.dart';
 
 class ApiService {
-  static const String baseUrl = 'https://pokedex-n655.onrender.com/api';
+  static const String baseUrl = 'http://pokedex-n655.onrender.com/api';
+  //localhost:8080
 
   Future<List<Pokemon>> getAllPokemon() async {
     final response = await http.get(Uri.parse('$baseUrl/pokemon'));
