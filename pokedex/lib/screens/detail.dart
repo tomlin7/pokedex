@@ -49,7 +49,7 @@ class DetailScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: [
-                    Image.asset(
+                    Image.network(
                       pokemon.imageUrl,
                       height: 200,
                     ),

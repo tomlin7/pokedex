@@ -22,7 +22,7 @@ class Pokemon {
       id: json['id'],
       name: json['name'],
       number: json['number'],
-      imageUrl: json['imageUrl'],
+      imageUrl: json['imageURL'],
       description: json['description'],
       backgroundColor: _hexToColor(json['backgroundColor']),
     );

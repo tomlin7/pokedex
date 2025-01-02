@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/providers/pokemon.dart';
 import 'package:pokedex/screens/home.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const PokemonApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class PokemonApp extends StatelessWidget {
+  const PokemonApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pokédex',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: const Color(0xFFF5F9FD),
-        fontFamily: 'Poppins',
+    return ChangeNotifierProvider(
+      create: (_) => PokemonProvider()..loadPokemon(),
+      child: MaterialApp(
+        title: 'Pokédex',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: const Color(0xFFF5F9FD),
+          fontFamily: 'Poppins',
+        ),
+        home: const Home(),
       ),
-      home: const Home(),
     );
   }
 }

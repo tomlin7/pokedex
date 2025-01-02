@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:pokedex/models/pokemon.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://localhost:3000/api';
+  static const String baseUrl = 'https://pokedex-n655.onrender.com/api';
 
   Future<List<Pokemon>> getAllPokemon() async {
     final response = await http.get(Uri.parse('$baseUrl/pokemon'));
@@ -18,7 +18,7 @@ class ApiService {
   }
 
   Future<Pokemon> getPokemonById(int id) async {
-    final response = await http.get(Uri.parse('$baseUrl/pokemon?id=$id'));
+    final response = await http.get(Uri.parse('$baseUrl/pokemon/$id'));
 
     if (response.statusCode == 200) {
       return Pokemon.fromJson(json.decode(response.body));
@@ -28,10 +28,11 @@ class ApiService {
   }
 
   Future<List<Pokemon>> searchPokemon(String query) async {
-    final response = await http
-        .get(Uri.parse('$baseUrl/pokemon/search').replace(queryParameters: {
-      'q': query,
-    }));
+    final response = await http.get(
+      Uri.parse('$baseUrl/pokemon/search').replace(
+        queryParameters: {'q': query},
+      ),
+    );
 
     if (response.statusCode == 200) {
       final List<dynamic> jsonList = json.decode(response.body);

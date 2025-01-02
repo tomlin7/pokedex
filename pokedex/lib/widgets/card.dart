@@ -16,7 +16,7 @@ class PokemonCard extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(
+          Image.network(
             pokemon.imageUrl,
             height: 100,
           ),

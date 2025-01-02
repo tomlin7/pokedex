@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   http:
+  provider:
 
 dev_dependencies:
   flutter_test:
