@@ -4,8 +4,8 @@ import (
 	"log"
 	"server/config"
 	"server/handlers"
-	"server/middleware"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,10 +17,11 @@ func main() {
 	config.ConnectDB()
 
 	r := gin.Default()
-	r.Use(middleware.CORS())
+	r.Use(cors.Default())
 
 	// routes
 	api := r.Group("/api")
+	api.Use(cors.Default())
 	{
 		api.GET("/pokemon", handlers.GetAllPokemon)
 		api.GET("/pokemon/:id", handlers.GetPokemonByID)
