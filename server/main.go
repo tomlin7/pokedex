@@ -17,11 +17,15 @@ func main() {
 	config.ConnectDB()
 
 	r := gin.Default()
-	r.Use(cors.Default())
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"*", "https://pokedex-rho-hazel.vercel.app"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Content-Type", "Authorization", "X-Requested-With"},
+		AllowCredentials: true,
+	}))
 
 	// routes
 	api := r.Group("/api")
-	api.Use(cors.Default())
 	{
 		api.GET("/pokemon", handlers.GetAllPokemon)
 		api.GET("/pokemon/:id", handlers.GetPokemonByID)
