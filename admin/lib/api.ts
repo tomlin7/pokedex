@@ -45,3 +45,28 @@ export async function searchPokemon(query: string): Promise<Pokemon[]> {
 
   return res.data;
 }
+
+export async function createPokemon(pokemon: Pokemon): Promise<Pokemon> {
+  const res = await axios.post(`${API_URL}/api/pokemon`, pokemon);
+  if (res.status !== 201) {
+    throw new Error("Failed to create pokemon");
+  }
+
+  return res.data;
+}
+
+export async function updatePokemon(pokemon: Pokemon): Promise<Pokemon> {
+  const res = await axios.put(`${API_URL}/api/pokemon/${pokemon.id}`, pokemon);
+  if (res.status !== 200) {
+    throw new Error("Failed to update pokemon");
+  }
+
+  return res.data;
+}
+
+export async function deletePokemon(id: string): Promise<void> {
+  const res = await axios.delete(`${API_URL}/api/pokemon/${id}`);
+  if (res.status !== 200) {
+    throw new Error("Failed to delete pokemon");
+  }
+}
