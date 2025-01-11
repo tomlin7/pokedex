@@ -72,7 +72,7 @@ export default function Home() {
           placeholder="Search for a Pokemon"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-10"
+          className="p-5 pl-10"
         />
       </form>
 

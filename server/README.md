@@ -15,7 +15,7 @@ You can run the following commands to start the server:
 
 ```bash
 go install
-go run .
+go run main.go
 ```
 
 The server will start on port 8080.
@@ -27,12 +27,9 @@ The server provides the following endpoints:
 - `GET /api/pokemon`: Returns a list of all Pokémon.
 - `GET /api/pokemon/:id`: Returns a single Pokémon by ID.
 - `GET /api/pokemon/search?q=...`: Returns a list of Pokémon that match the search query.
-
-### Planned features
-
-- [ ] `POST /api/pokemon`: Creates a new Pokémon.
-- [ ] `PUT /api/pokemon/:id`: Updates a Pokémon by ID.
-- [ ] `DELETE /api/pokemon/:id`: Deletes a Pokémon by ID.
+- `POST /api/pokemon`: Creates a new Pokémon.
+- `PUT /api/pokemon/:id`: Updates a Pokémon by ID.
+- `DELETE /api/pokemon/:id`: Deletes a Pokémon by ID.
 
 ### Data model
 
