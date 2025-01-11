@@ -89,3 +89,75 @@ func parseNumber(s string) int {
 	}
 	return num
 }
+
+func CreatePokemon(c *gin.Context) {
+	var pokemon models.Pokemon
+	if err := c.ShouldBindJSON(&pokemon); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	collection := config.DB.Collection("pokemon")
+	ctx := context.Background()
+
+	result, err := collection.InsertOne(ctx, pokemon)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create pokemon"})
+		return
+	}
+
+	c.JSON(http.StatusCreated, result)
+}
+
+func UpdatePokemon(c *gin.Context) {
+	id := c.Param("id")
+	objID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+		return
+	}
+
+	var pokemon models.Pokemon
+	if err := c.ShouldBindJSON(&pokemon); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	collection := config.DB.Collection("pokemon")
+	ctx := context.Background()
+
+	update := bson.M{
+		"$set": bson.M{
+			"name":   pokemon.Name,
+			"number": pokemon.Number,
+		},
+	}
+
+	_, err = collection.UpdateOne(ctx, bson.M{"_id": objID}, update)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update pokemon"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Pokemon updated"})
+}
+
+func DeletePokemon(c *gin.Context) {
+	id := c.Param("id")
+	objID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+		return
+	}
+
+	collection := config.DB.Collection("pokemon")
+	ctx := context.Background()
+
+	_, err = collection.DeleteOne(ctx, bson.M{"_id": objID})
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete pokemon"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Pokemon deleted"})
+}

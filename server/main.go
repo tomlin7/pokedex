@@ -30,6 +30,9 @@ func main() {
 		api.GET("/pokemon", handlers.GetAllPokemon)
 		api.GET("/pokemon/:id", handlers.GetPokemonByID)
 		api.GET("/pokemon/search", handlers.SearchPokemon)
+		api.POST("/pokemon", handlers.CreatePokemon)
+		api.PUT("/pokemon/:id", handlers.UpdatePokemon)
+		api.DELETE("/pokemon/:id", handlers.DeletePokemon)
 	}
 
 	log.Fatal(r.Run(":8080"))
